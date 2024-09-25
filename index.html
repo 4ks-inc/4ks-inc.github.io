@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4ks - 혁신적인 솔루션 제공업체</title>
+    <title>4ks - 삶의 질 향상을 위한 혁신적 솔루션</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Noto Sans KR', Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
         }
         .container {
             width: 80%;
@@ -17,13 +19,15 @@
             overflow: hidden;
         }
         header {
-            background: #f4f4f4;
+            background: #ffffff;
             padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         header .logo {
             float: left;
             font-size: 2rem;
             font-weight: bold;
+            color: #4a90e2;
         }
         header nav {
             float: right;
@@ -39,36 +43,79 @@
         header a {
             color: #333;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        header a:hover {
+            color: #4a90e2;
         }
         .hero {
-            background: #f4f4f4;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/placeholder.svg?height=400&width=1200');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
             text-align: center;
-            padding: 50px 0;
+            padding: 100px 0;
         }
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
         .btn {
             display: inline-block;
-            background: #333;
+            background: #4a90e2;
             color: #fff;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #3a7bc8;
         }
         .section {
             padding: 50px 0;
             text-align: center;
         }
         .section h2 {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+            color: #4a90e2;
+        }
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
         }
         footer {
             background: #333;
             color: #fff;
             text-align: center;
             padding: 20px 0;
+        }
+        @media (max-width: 768px) {
+            header .logo,
+            header nav {
+                float: none;
+                text-align: center;
+            }
+            header nav {
+                margin-top: 20px;
+            }
+            .card {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
         }
     </style>
 </head>
@@ -89,38 +136,66 @@
 
     <section class="hero">
         <div class="container">
-            <h1>4ks에 오신 것을 환영합니다</h1>
-            <p>혁신적인 솔루션으로 미래를 만들어갑니다</p>
-            <a href="#" class="btn">자세히 알아보기</a>
+            <h1>더 나은 삶을 위한 혁신</h1>
+            <p>4ks는 정서적, 심리적 웰빙과 삶의 질 향상을 위한 혁신적인 솔루션을 제공합니다</p>
+            <a href="#services" class="btn">서비스 알아보기</a>
         </div>
     </section>
 
     <section id="services" class="section">
         <div class="container">
             <h2>서비스</h2>
-            <p>여기에 서비스 내용이 들어갑니다.</p>
+            <div class="card">
+                <img src="/placeholder.svg?height=200&width=300" alt="AI 기반 정서 지원 서비스 이미지">
+                <h3>AI 기반 정서 지원</h3>
+                <p>24/7 이용 가능한 AI 챗봇을 통해 즉각적인 정서적 지원과 조언을 제공합니다.</p>
+            </div>
+            <div class="card">
+                <img src="/placeholder.svg?height=200&width=300" alt="맞춤형 심리 상담 플랫폼 이미지">
+                <h3>맞춤형 심리 상담 플랫폼</h3>
+                <p>개인의 필요에 맞는 전문 상담사를 연결하고, 온라인 상담 서비스를 제공합니다.</p>
+            </div>
         </div>
     </section>
 
     <section id="projects" class="section">
         <div class="container">
             <h2>프로젝트</h2>
-            <p>여기에 프로젝트 내용이 들어갑니다.</p>
+            <div class="card">
+                <img src="/placeholder.svg?height=200&width=300" alt="마음챙김 앱 프로젝트 이미지">
+                <h3>마음챙김 앱</h3>
+                <p>일상 속 스트레스 관리와 정신 건강 증진을 위한 명상, 호흡 운동 가이드를 제공하는 모바일 앱입니다.</p>
+            </div>
+            <div class="card">
+                <img src="/placeholder.svg?height=200&width=300" alt="커뮤니티 웰빙 플랫폼 이미지">
+                <h3>커뮤니티 웰빙 플랫폼</h3>
+                <p>지역 사회 내에서 정서적 지원과 자원을 공유할 수 있는 온라인 커뮤니티 플랫폼을 개발 중입니다.</p>
+            </div>
         </div>
     </section>
 
     <section id="team" class="section">
         <div class="container">
             <h2>팀</h2>
-            <p>여기에 팀 소개가 들어갑니다.</p>
+            <div class="card">
+                <img src="/placeholder.svg?height=200&width=200" alt="김서연 CEO 프로필 이미지">
+                <h3>김서연</h3>
+                <p>CEO | 심리학 박사</p>
+            </div>
+            <div class="card">
+                <img src="/placeholder.svg?height=200&width=200" alt="박준호 CTO 프로필 이미지">
+                <h3>박준호</h3>
+                <p>CTO | AI 전문가</p>
+            </div>
         </div>
     </section>
 
-    <footer>
+    <footer id="contact">
         <div class="container">
             <h3>4ks</h3>
-            <p>혁신적인 솔루션 제공업체</p>
-            <p>이메일: info@4ks.com | 전화: 123-456-7890</p>
+            <p>더 나은 삶을 위한 혁신적 솔루션</p>
+            <p>이메일: contact@4ks.com | 전화: 02-123-4567</p>
+            <p>주소: 서울특별시 강남구 테헤란로 123 4ks빌딩</p>
             <p>&copy; 2023 4ks. All rights reserved.</p>
         </div>
     </footer>
