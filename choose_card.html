@@ -29,6 +29,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             cursor: pointer;
+            transition: transform 0.5s ease, left 0.5s ease, top 0.5s ease;
         }
 
         .tarot-card.card-position-0 {
@@ -70,6 +71,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             cursor: pointer;
+            transition: transform 0.5s ease;
         }
 
         .highlighted-card {
@@ -97,18 +99,27 @@
     const tarotDeck = document.getElementById('tarot-deck');
     const selectedArea = document.getElementById('selected-area');
 
-    tarotDeck.addEventListener('touchstart', (e) => {
+    function startInteraction(e) {
+        e.preventDefault();
         if (e.target.classList.contains('tarot-card') || e.target.classList.contains('selected-card')) {
             currentDraggedCard = e.target;
             currentDraggedCard.classList.add('highlighted-card');
         }
-    });
+    }
 
-    tarotDeck.addEventListener('touchmove', (e) => {
+    function moveInteraction(e) {
         e.preventDefault();
         if (currentDraggedCard) {
-            const touch = e.touches[0];
-            const element = document.elementFromPoint(touch.clientX, touch.clientY);
+            let x, y;
+            if (e.touches) {
+                const touch = e.touches[0];
+                x = touch.clientX;
+                y = touch.clientY;
+            } else {
+                x = e.clientX;
+                y = e.clientY;
+            }
+            const element = document.elementFromPoint(x, y);
             if (element && element.classList.contains('tarot-card')) {
                 if (currentDraggedCard !== element) {
                     currentDraggedCard.classList.remove('highlighted-card');
@@ -117,25 +128,44 @@
                 }
             }
         }
-    });
+    }
 
-    tarotDeck.addEventListener('touchend', () => {
+    function endInteraction(e) {
+        e.preventDefault();
         if (currentDraggedCard) {
             if (currentDraggedCard.classList.contains('selected-card')) {
                 // 이미 선택된 카드일 경우 원래 자리로 복귀
                 currentDraggedCard.classList.remove('selected-card');
                 currentDraggedCard.classList.add('tarot-card');
-                tarotDeck.appendChild(currentDraggedCard);
                 const originalPosition = currentDraggedCard.getAttribute('data-original-position');
                 currentDraggedCard.className = `tarot-card card-position-${originalPosition}`;
+                tarotDeck.appendChild(currentDraggedCard);
             } else {
                 // 선택되지 않은 카드를 선택 영역으로 이동
                 currentDraggedCard.classList.remove('tarot-card');
                 currentDraggedCard.classList.add('selected-card');
+                currentDraggedCard.style.transform = 'scale(1.0)';
                 selectedArea.appendChild(currentDraggedCard);
             }
             currentDraggedCard.classList.remove('highlighted-card');
+            currentDraggedCard.style.transition = 'transform 0.5s ease';
             currentDraggedCard = null;
+        }
+    }
+
+    tarotDeck.addEventListener('touchstart', startInteraction);
+    tarotDeck.addEventListener('touchmove', moveInteraction);
+    tarotDeck.addEventListener('touchend', endInteraction);
+
+    tarotDeck.addEventListener('mousedown', startInteraction);
+    document.addEventListener('mousemove', (e) => {
+        if (currentDraggedCard) {
+            moveInteraction(e);
+        }
+    });
+    document.addEventListener('mouseup', (e) => {
+        if (currentDraggedCard) {
+            endInteraction(e);
         }
     });
 
@@ -145,9 +175,11 @@
             const card = event.target;
             card.classList.remove('selected-card');
             card.classList.add('tarot-card');
-            tarotDeck.appendChild(card);
             const originalPosition = card.getAttribute('data-original-position');
             card.className = `tarot-card card-position-${originalPosition}`;
+            card.style.transform = 'scale(1.0)';
+            card.style.transition = 'transform 0.5s ease';
+            tarotDeck.appendChild(card);
         }
     });
 
